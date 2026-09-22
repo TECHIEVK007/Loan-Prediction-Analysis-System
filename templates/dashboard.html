@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Loan Prediction Analysis System</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+
+<body>
+
+<div class="app-layout">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ₹
+            </div>
+
+
+            <div class="brand-text">
+
+                <h2>
+                    Loan Prediction
+                </h2>
+
+                <p>
+                    Analysis System
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MENU -->
+
+        <nav class="sidebar-menu">
+
+
+            <a
+                href="/"
+                class="menu-link active"
+            >
+
+                <span class="menu-icon">
+                    🏠
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+
+            <a
+                href="/applicants"
+                class="menu-link"
+            >
+
+                <span class="menu-icon">
+                    👥
+                </span>
+
+                Applicants
+
+            </a>
+
+
+
+            <a
+                href="/analysis"
+                class="menu-link"
+            >
+
+                <span class="menu-icon">
+                    📊
+                </span>
+
+                Analysis
+
+            </a>
+
+
+
+            <a
+                href="/prediction"
+                class="menu-link"
+            >
+
+                <span class="menu-icon">
+                    🧠
+                </span>
+
+                Prediction
+
+            </a>
+
+
+        </nav>
+
+
+
+        <!-- SIDEBAR QUOTE -->
+
+        <div class="sidebar-quote">
+
+            “Data turns
+            applications into
+            opportunities.”
+
+            <div class="quote-line"></div>
+
+        </div>
+
+
+
+        <!-- SIDEBAR FOOTER -->
+
+        <div class="sidebar-footer">
+
+            <p>
+                v1.0.0
+            </p>
+
+            <p>
+                Loan Prediction System
+            </p>
+
+
+            <div class="footer-divider"></div>
+
+
+            <p>
+                Designed by
+            </p>
+
+            <strong>
+                Sahu Tech ❤️
+            </strong>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
+
+        <header class="topbar">
+
+
+            <div class="menu-button">
+                ☰
+            </div>
+
+
+            <div class="search-box">
+
+                <span>
+                    🔍
+                </span>
+
+                <input
+                    type="text"
+                    placeholder="Search applicants, loan ID, or insights..."
+                >
+
+            </div>
+
+
+            <div class="top-profile">
+
+
+                <div class="notification">
+                    🔔
+                </div>
+
+
+                <div class="profile-circle">
+                    ST
+                </div>
+
+
+                <div class="profile-info">
+
+                    <strong>
+                        Sahu Tech
+                    </strong>
+
+                    <small>
+                        Build • Analyze • Predict
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero-banner">
+
+
+            <div class="hero-content">
+
+
+                <p class="hero-small">
+
+                    SMART ANALYSIS
+                    <span>•</span>
+
+                    BETTER DECISIONS
+                    <span>•</span>
+
+                    BRIGHTER FUTURES
+
+                </p>
+
+
+                <h1>
+
+                    Welcome to
+
+                    <span>
+                        Loan Prediction Analysis System
+                    </span>
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    Analyze applicant data,
+                    discover key insights,
+                    and predict loan approval
+                    with confidence.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="hero-right">
+
+
+                <blockquote>
+
+                    “Turning data into
+                    financial opportunities.”
+
+                </blockquote>
+
+
+                <span>
+                    — Sahu Tech
+                </span>
+
+
+                <div class="bank-icon">
+                    🏦
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             STAT CARDS
+        ================================================== -->
+
+        <section class="stats-grid">
+
+
+            <!-- TOTAL -->
+
+            <div class="stat-card stat-blue">
+
+                <div class="stat-icon blue-icon">
+                    👥
+                </div>
+
+
+                <h2>
+                    {{ total_applicants }}
+                </h2>
+
+
+                <h3>
+                    Total Applicants
+                </h3>
+
+
+                <p>
+                    All loan applications
+                </p>
+
+            </div>
+
+
+
+            <!-- APPROVED -->
+
+            <div class="stat-card stat-green">
+
+                <div class="stat-icon green-icon">
+                    ✓
+                </div>
+
+
+                <h2>
+                    {{ approved_loans }}
+                </h2>
+
+
+                <h3>
+                    Approved Loans
+                </h3>
+
+
+                <p>
+                    Successful applications
+                </p>
+
+            </div>
+
+
+
+            <!-- REJECTED -->
+
+            <div class="stat-card stat-red">
+
+                <div class="stat-icon red-icon">
+                    ✕
+                </div>
+
+
+                <h2>
+                    {{ rejected_loans }}
+                </h2>
+
+
+                <h3>
+                    Rejected Loans
+                </h3>
+
+
+                <p>
+                    Unsuccessful applications
+                </p>
+
+            </div>
+
+
+
+            <!-- APPROVAL RATE -->
+
+            <div class="stat-card stat-purple">
+
+                <div class="stat-icon purple-icon">
+                    ◔
+                </div>
+
+
+                <h2>
+                    {{ approval_rate }}%
+                </h2>
+
+
+                <h3>
+                    Approval Rate
+                </h3>
+
+
+                <p>
+                    Overall success rate
+                </p>
+
+            </div>
+
+
+
+            <!-- AVERAGE INCOME -->
+
+            <div class="stat-card stat-yellow">
+
+                <div class="stat-icon yellow-icon">
+                    ₹
+                </div>
+
+
+                <h2 class="money-value">
+
+                    ₹{{ average_income | round(0) }}
+
+                </h2>
+
+
+                <h3>
+                    Average Income
+                </h3>
+
+
+                <p>
+                    Annual applicant income
+                </p>
+
+            </div>
+
+
+
+            <!-- MODEL ACCURACY -->
+
+            <div class="stat-card stat-cyan">
+
+                <div class="stat-icon cyan-icon">
+                    📊
+                </div>
+
+
+                <h2>
+                    {{ model_accuracy }}%
+                </h2>
+
+
+                <h3>
+                    Model Accuracy
+                </h3>
+
+
+                <p>
+                    Prediction performance
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             ANALYTICS ROW
+        ================================================== -->
+
+        <section class="analytics-grid">
+
+
+            <!-- LOAN STATUS -->
+
+            <div class="dashboard-card">
+
+
+                <div class="card-title">
+
+                    <span>
+                        👤
+                    </span>
+
+                    <h3>
+                        Loan Status Distribution
+                    </h3>
+
+                </div>
+
+
+
+                <div class="donut-container">
+
+
+                    <div
+                        id="loanDonut"
+                        class="donut-chart"
+                        data-value="{{ approval_rate }}"
+                    >
+
+
+                        <div class="donut-center">
+
+                            <strong>
+                                {{ approval_rate }}%
+                            </strong>
+
+                            <span>
+                                Approved
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="chart-legend">
+
+
+                        <div class="legend-item">
+
+                            <span class="legend-dot approved-dot"></span>
+
+
+                            <div>
+
+                                <p>
+                                    Approved
+                                </p>
+
+                                <strong>
+                                    {{ approved_loans }}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="legend-item">
+
+                            <span class="legend-dot rejected-dot"></span>
+
+
+                            <div>
+
+                                <p>
+                                    Rejected
+                                </p>
+
+                                <strong>
+                                    {{ rejected_loans }}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- FINANCIAL OVERVIEW -->
+
+            <div class="dashboard-card">
+
+
+                <div class="card-title">
+
+                    <span>
+                        ₹
+                    </span>
+
+                    <h3>
+                        Financial Overview
+                    </h3>
+
+                </div>
+
+
+
+                <div class="financial-row">
+
+                    <div>
+
+                        <span>
+                            Average Annual Income
+                        </span>
+
+                        <strong>
+                            ₹{{ average_income | round(0) }}
+                        </strong>
+
+                    </div>
+
+                    <div class="financial-icon">
+                        💰
+                    </div>
+
+                </div>
+
+
+
+                <div class="financial-row">
+
+                    <div>
+
+                        <span>
+                            Average Loan Amount
+                        </span>
+
+                        <strong>
+                            ₹{{ average_loan | round(0) }}
+                        </strong>
+
+                    </div>
+
+                    <div class="financial-icon">
+                        💳
+                    </div>
+
+                </div>
+
+
+
+                <div class="financial-row no-border">
+
+                    <div>
+
+                        <span>
+                            Average CIBIL Score
+                        </span>
+
+                        <strong>
+                            {{ average_cibil }}
+                        </strong>
+
+                    </div>
+
+                    <div class="financial-icon">
+                        ⭐
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- MODEL -->
+
+            <div class="dashboard-card">
+
+
+                <div class="card-title">
+
+                    <span>
+                        🧠
+                    </span>
+
+                    <h3>
+                        Prediction Model
+                    </h3>
+
+                </div>
+
+
+
+                <div class="model-section">
+
+
+                    <div class="model-circle">
+
+                        <strong>
+                            {{ model_accuracy }}%
+                        </strong>
+
+                        <span>
+                            Accuracy
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Logistic Regression
+                    </h3>
+
+
+                    <p>
+
+                        Machine learning model
+                        trained using historical
+                        loan applicant data.
+
+                    </p>
+
+
+                    <a
+                        href="/prediction"
+                        class="model-button"
+                    >
+
+                        Test Prediction →
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             LOWER SECTION
+        ================================================== -->
+
+        <section class="bottom-grid">
+
+
+            <!-- INSIGHTS -->
+
+            <div class="dashboard-card">
+
+
+                <div class="card-title">
+
+                    <span>
+                        ⚡
+                    </span>
+
+                    <h3>
+                        Key Financial Insights
+                    </h3>
+
+                </div>
+
+
+
+                <div class="insight-grid">
+
+
+                    <div class="insight-item">
+
+                        <div class="insight-icon green-box">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Credit Strength
+                            </strong>
+
+                            <p>
+                                CIBIL score plays an important
+                                role in loan approval.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="insight-item">
+
+                        <div class="insight-icon blue-box">
+                            ₹
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Income Analysis
+                            </strong>
+
+                            <p>
+                                Applicant income is compared
+                                with requested loan amount.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="insight-item">
+
+                        <div class="insight-icon purple-box">
+                            🏠
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Asset Strength
+                            </strong>
+
+                            <p>
+                                Residential, commercial and
+                                bank assets strengthen profiles.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="dashboard-card">
+
+
+                <div class="card-title">
+
+                    <span>
+                        ⚡
+                    </span>
+
+                    <h3>
+                        Quick Actions
+                    </h3>
+
+                </div>
+
+
+
+                <div class="quick-actions">
+
+
+                    <a
+                        href="/applicants"
+                        class="quick-action action-blue"
+                    >
+
+                        <div class="action-icon">
+                            👥
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                View Applicants
+                            </strong>
+
+                            <p>
+                                Browse all loan records
+                            </p>
+
+                        </div>
+
+
+                        <span>
+                            →
+                        </span>
+
+                    </a>
+
+
+
+                    <a
+                        href="/analysis"
+                        class="quick-action action-green"
+                    >
+
+                        <div class="action-icon">
+                            📊
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Data Analysis
+                            </strong>
+
+                            <p>
+                                Explore key insights
+                            </p>
+
+                        </div>
+
+
+                        <span>
+                            →
+                        </span>
+
+                    </a>
+
+
+
+                    <a
+                        href="/prediction"
+                        class="quick-action action-purple"
+                    >
+
+                        <div class="action-icon">
+                            🧠
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Predict Loan
+                            </strong>
+
+                            <p>
+                                Check loan eligibility
+                            </p>
+
+                        </div>
+
+
+                        <span>
+                            →
+                        </span>
+
+                    </a>
+
+
+
+                    <a
+                        href="/analysis"
+                        class="quick-action action-yellow"
+                    >
+
+                        <div class="action-icon">
+                            📄
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Project Report
+                            </strong>
+
+                            <p>
+                                View analysis summary
+                            </p>
+
+                        </div>
+
+
+                        <span>
+                            →
+                        </span>
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer class="main-footer">
+
+
+            <p>
+
+                © 2026 Loan Prediction Data Analysis System.
+
+            </p>
+
+
+            <p>
+
+                Designed by
+
+                <strong>
+                    Sahu Tech ❤️
+                </strong>
+
+            </p>
+
+
+        </footer>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+    const donut =
+        document.getElementById(
+            "loanDonut"
+        );
+
+
+    const approvalRate =
+        parseFloat(
+            donut.dataset.value
+        );
+
+
+    donut.style.background =
+        "conic-gradient(" +
+        "#27c77a 0% " +
+        approvalRate +
+        "%, " +
+        "#ff5368 " +
+        approvalRate +
+        "% 100%)";
+
+</script>
+
+
+</body>
+
+</html>

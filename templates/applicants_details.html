@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Applicant Details</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app-layout">
+
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ₹
+            </div>
+
+            <div class="brand-text">
+
+                <h2>
+                    Loan Prediction
+                </h2>
+
+                <p>
+                    Analysis System
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <a href="/" class="menu-link">
+
+                <span class="menu-icon">
+                    🏠
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="/applicants"
+                class="menu-link active"
+            >
+
+                <span class="menu-icon">
+                    👥
+                </span>
+
+                Applicants
+
+            </a>
+
+
+            <a
+                href="/analysis"
+                class="menu-link"
+            >
+
+                <span class="menu-icon">
+                    📊
+                </span>
+
+                Analysis
+
+            </a>
+
+
+            <a
+                href="/prediction"
+                class="menu-link"
+            >
+
+                <span class="menu-icon">
+                    🧠
+                </span>
+
+                Prediction
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <p>
+                v1.0.0
+            </p>
+
+            <p>
+                Loan Prediction System
+            </p>
+
+            <div class="footer-divider"></div>
+
+            <p>
+                Designed by
+            </p>
+
+            <strong>
+                Sahu Tech ❤️
+            </strong>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+
+        <header class="topbar">
+
+            <div class="menu-button">
+                ☰
+            </div>
+
+
+            <div class="top-profile">
+
+                <div class="profile-circle">
+                    ST
+                </div>
+
+                <div class="profile-info">
+
+                    <strong>
+                        Sahu Tech
+                    </strong>
+
+                    <small>
+                        Applicant Details
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="page-section">
+
+            <div class="page-header">
+
+                <a
+                    href="/applicants"
+                    class="back-link"
+                >
+                    ← Back to Applicants
+                </a>
+
+
+                <h1>
+                    Applicant #{{ applicant.loan_id }}
+                </h1>
+
+                <p>
+                    Complete financial and loan profile
+                </p>
+
+            </div>
+
+
+            <section class="detail-grid">
+
+
+                <div class="detail-card">
+
+                    <small>
+                        Loan Status
+                    </small>
+
+                    <strong>
+                        {{ applicant.loan_status }}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-card">
+
+                    <small>
+                        Annual Income
+                    </small>
+
+                    <strong>
+                        ₹{{ applicant.income_annum }}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-card">
+
+                    <small>
+                        Loan Amount
+                    </small>
+
+                    <strong>
+                        ₹{{ applicant.loan_amount }}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-card">
+
+                    <small>
+                        CIBIL Score
+                    </small>
+
+                    <strong>
+                        {{ applicant.cibil_score }}
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+            <section class="details-layout">
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-title">
+
+                        <span>
+                            👤
+                        </span>
+
+                        <h3>
+                            Applicant Information
+                        </h3>
+
+                    </div>
+
+
+                    <div class="information-row">
+
+                        <span>
+                            Dependents
+                        </span>
+
+                        <strong>
+                            {{ applicant.no_of_dependents }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="information-row">
+
+                        <span>
+                            Education
+                        </span>
+
+                        <strong>
+                            {{ applicant.education }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="information-row">
+
+                        <span>
+                            Self Employed
+                        </span>
+
+                        <strong>
+                            {{ applicant.self_employed }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="information-row">
+
+                        <span>
+                            Loan Term
+                        </span>
+
+                        <strong>
+                            {{ applicant.loan_term }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-title">
+
+                        <span>
+                            📊
+                        </span>
+
+                        <h3>
+                            Financial Insights
+                        </h3>
+
+                    </div>
+
+
+                    <div class="information-row">
+
+                        <span>
+                            Total Assets
+                        </span>
+
+                        <strong>
+                            ₹{{ applicant.total_assets_value }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="information-row">
+
+                        <span>
+                            Loan / Income Ratio
+                        </span>
+
+                        <strong>
+                            {{ applicant.loan_income_ratio }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="information-row">
+
+                        <span>
+                            CIBIL Category
+                        </span>
+
+                        <strong>
+                            {{ applicant.cibil_category }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="information-row">
+
+                        <span>
+                            Risk Level
+                        </span>
+
+                        <strong>
+                            {{ applicant.risk_level }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="information-row">
+
+                        <span>
+                            Eligibility
+                        </span>
+
+                        <strong>
+                            {{ applicant.eligibility_status }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card asset-panel">
+
+                    <div class="card-title">
+
+                        <span>
+                            🏦
+                        </span>
+
+                        <h3>
+                            Asset Details
+                        </h3>
+
+                    </div>
+
+
+                    <div class="asset-grid">
+
+
+                        <div>
+
+                            <small>
+                                Residential Assets
+                            </small>
+
+                            <strong>
+                                ₹{{ applicant.residential_assets_value }}
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <small>
+                                Commercial Assets
+                            </small>
+
+                            <strong>
+                                ₹{{ applicant.commercial_assets_value }}
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <small>
+                                Luxury Assets
+                            </small>
+
+                            <strong>
+                                ₹{{ applicant.luxury_assets_value }}
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <small>
+                                Bank Assets
+                            </small>
+
+                            <strong>
+                                ₹{{ applicant.bank_asset_value }}
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+        </section>
+
+
+        <footer class="main-footer">
+
+            <p>
+                © 2026 Loan Prediction Data Analysis System.
+            </p>
+
+            <p>
+                Designed by
+                <strong>Sahu Tech ❤️</strong>
+            </p>
+
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

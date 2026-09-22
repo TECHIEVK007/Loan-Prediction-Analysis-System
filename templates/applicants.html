@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Loan Applicants</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app-layout">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ₹
+            </div>
+
+            <div class="brand-text">
+
+                <h2>
+                    Loan Prediction
+                </h2>
+
+                <p>
+                    Analysis System
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <a href="/" class="menu-link">
+
+                <span class="menu-icon">
+                    🏠
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="/applicants"
+                class="menu-link active"
+            >
+
+                <span class="menu-icon">
+                    👥
+                </span>
+
+                Applicants
+
+            </a>
+
+
+            <a
+                href="/analysis"
+                class="menu-link"
+            >
+
+                <span class="menu-icon">
+                    📊
+                </span>
+
+                Analysis
+
+            </a>
+
+
+            <a
+                href="/prediction"
+                class="menu-link"
+            >
+
+                <span class="menu-icon">
+                    🧠
+                </span>
+
+                Prediction
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-quote">
+
+            “Data turns
+            applications into
+            opportunities.”
+
+            <div class="quote-line"></div>
+
+        </div>
+
+
+        <div class="sidebar-footer">
+
+            <p>
+                v1.0.0
+            </p>
+
+            <p>
+                Loan Prediction System
+            </p>
+
+            <div class="footer-divider"></div>
+
+            <p>
+                Designed by
+            </p>
+
+            <strong>
+                Sahu Tech ❤️
+            </strong>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="menu-button">
+                ☰
+            </div>
+
+
+            <div class="search-box">
+
+                <span>
+                    🔍
+                </span>
+
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Search applicants, loan ID, status..."
+                >
+
+            </div>
+
+
+            <div class="top-profile">
+
+                <div class="profile-circle">
+                    ST
+                </div>
+
+                <div class="profile-info">
+
+                    <strong>
+                        Sahu Tech
+                    </strong>
+
+                    <small>
+                        Loan Analytics
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE CONTENT -->
+
+        <section class="page-section">
+
+            <div class="page-header">
+
+                <h1>
+                    Loan Applicants
+                </h1>
+
+                <p>
+                    Browse and search all applicant records
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="card-title">
+
+                    <span>
+                        👥
+                    </span>
+
+                    <h3>
+                        Applicant Records
+                    </h3>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table id="applicantTable">
+
+                        <thead>
+
+                        <tr>
+
+                            <th>
+                                Loan ID
+                            </th>
+
+                            <th>
+                                Dependents
+                            </th>
+
+                            <th>
+                                Education
+                            </th>
+
+                            <th>
+                                Self Employed
+                            </th>
+
+                            <th>
+                                Income
+                            </th>
+
+                            <th>
+                                Loan Amount
+                            </th>
+
+                            <th>
+                                CIBIL
+                            </th>
+
+                            <th>
+                                Risk
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                        {% for applicant in applicants %}
+
+                        <tr>
+
+                            <td>
+
+                                <a
+                                    href="/applicant/{{ applicant.loan_id }}"
+                                    class="student-id"
+                                >
+
+                                    {{ applicant.loan_id }}
+
+                                </a>
+
+                            </td>
+
+
+                            <td>
+                                {{ applicant.no_of_dependents }}
+                            </td>
+
+
+                            <td>
+                                {{ applicant.education }}
+                            </td>
+
+
+                            <td>
+                                {{ applicant.self_employed }}
+                            </td>
+
+
+                            <td>
+                                ₹{{ applicant.income_annum }}
+                            </td>
+
+
+                            <td>
+                                ₹{{ applicant.loan_amount }}
+                            </td>
+
+
+                            <td>
+                                {{ applicant.cibil_score }}
+                            </td>
+
+
+                            <td>
+
+                                <span class="risk-badge">
+
+                                    {{ applicant.risk_level }}
+
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                {% if applicant.loan_status == "Approved" %}
+
+                                <span class="status approved">
+                                    Approved
+                                </span>
+
+                                {% else %}
+
+                                <span class="status rejected">
+                                    Rejected
+                                </span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer class="main-footer">
+
+            <p>
+                © 2026 Loan Prediction Data Analysis System.
+            </p>
+
+            <p>
+                Designed by
+                <strong>Sahu Tech ❤️</strong>
+            </p>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<script>
+
+const search =
+    document.getElementById("search");
+
+search.addEventListener(
+    "keyup",
+    function() {
+
+        const value =
+            search.value.toLowerCase();
+
+        const rows =
+            document.querySelectorAll(
+                "#applicantTable tbody tr"
+            );
+
+        rows.forEach(
+            function(row) {
+
+                const text =
+                    row.innerText.toLowerCase();
+
+                row.style.display =
+                    text.includes(value)
+                    ? ""
+                    : "none";
+            }
+        );
+    }
+);
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Loan Data Analysis</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app-layout">
+
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ₹
+            </div>
+
+            <div class="brand-text">
+
+                <h2>
+                    Loan Prediction
+                </h2>
+
+                <p>
+                    Analysis System
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <a href="/" class="menu-link">
+
+                <span class="menu-icon">
+                    🏠
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="/applicants" class="menu-link">
+
+                <span class="menu-icon">
+                    👥
+                </span>
+
+                Applicants
+
+            </a>
+
+
+            <a
+                href="/analysis"
+                class="menu-link active"
+            >
+
+                <span class="menu-icon">
+                    📊
+                </span>
+
+                Analysis
+
+            </a>
+
+
+            <a href="/prediction" class="menu-link">
+
+                <span class="menu-icon">
+                    🧠
+                </span>
+
+                Prediction
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <p>
+                v1.0.0
+            </p>
+
+            <p>
+                Loan Prediction System
+            </p>
+
+            <div class="footer-divider"></div>
+
+            <p>
+                Designed by
+            </p>
+
+            <strong>
+                Sahu Tech ❤️
+            </strong>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+
+        <header class="topbar">
+
+            <div class="menu-button">
+                ☰
+            </div>
+
+
+            <div class="top-profile">
+
+                <div class="profile-circle">
+                    ST
+                </div>
+
+                <div class="profile-info">
+
+                    <strong>
+                        Sahu Tech
+                    </strong>
+
+                    <small>
+                        Data Analysis
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="page-section">
+
+
+            <div class="page-header">
+
+                <h1>
+                    Loan Data Analysis
+                </h1>
+
+                <p>
+                    Explore approval patterns, risk and applicant profiles
+                </p>
+
+            </div>
+
+
+            <div class="analysis-grid">
+
+
+                <!-- LOAN STATUS -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-title">
+
+                        <span>
+                            ✓
+                        </span>
+
+                        <h3>
+                            Loan Status Distribution
+                        </h3>
+
+                    </div>
+
+
+                    {% for status, count in approval_distribution.items() %}
+
+                    <div class="analysis-row">
+
+                        <span>
+                            {{ status }}
+                        </span>
+
+                        <strong>
+                            {{ count }}
+                        </strong>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- RISK -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-title">
+
+                        <span>
+                            ⚠
+                        </span>
+
+                        <h3>
+                            Risk Distribution
+                        </h3>
+
+                    </div>
+
+
+                    {% for risk, count in risk_distribution.items() %}
+
+                    <div class="analysis-row">
+
+                        <span>
+                            {{ risk }}
+                        </span>
+
+                        <strong>
+                            {{ count }}
+                        </strong>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- CIBIL -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-title">
+
+                        <span>
+                            ⭐
+                        </span>
+
+                        <h3>
+                            CIBIL Categories
+                        </h3>
+
+                    </div>
+
+
+                    {% for category, count in cibil_distribution.items() %}
+
+                    <div class="analysis-row">
+
+                        <span>
+                            {{ category }}
+                        </span>
+
+                        <strong>
+                            {{ count }}
+                        </strong>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- INCOME -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-title">
+
+                        <span>
+                            ₹
+                        </span>
+
+                        <h3>
+                            Income Categories
+                        </h3>
+
+                    </div>
+
+
+                    {% for category, count in income_distribution.items() %}
+
+                    <div class="analysis-row">
+
+                        <span>
+                            {{ category }}
+                        </span>
+
+                        <strong>
+                            {{ count }}
+                        </strong>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- EDUCATION -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-title">
+
+                        <span>
+                            🎓
+                        </span>
+
+                        <h3>
+                            Education Analysis
+                        </h3>
+
+                    </div>
+
+
+                    {% for education, values in education_distribution.items() %}
+
+                    <div class="analysis-block">
+
+                        <strong>
+                            {{ education }}
+                        </strong>
+
+
+                        <p>
+
+                            Approved:
+
+                            <b>
+                                {{ values.get("Approved", 0) }}
+                            </b>
+
+                        </p>
+
+
+                        <p>
+
+                            Rejected:
+
+                            <b>
+                                {{ values.get("Rejected", 0) }}
+                            </b>
+
+                        </p>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- EMPLOYMENT -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-title">
+
+                        <span>
+                            💼
+                        </span>
+
+                        <h3>
+                            Employment Analysis
+                        </h3>
+
+                    </div>
+
+
+                    {% for employment, values in self_employed_distribution.items() %}
+
+                    <div class="analysis-block">
+
+                        <strong>
+                            {{ employment }}
+                        </strong>
+
+
+                        <p>
+
+                            Approved:
+
+                            <b>
+                                {{ values.get("Approved", 0) }}
+                            </b>
+
+                        </p>
+
+
+                        <p>
+
+                            Rejected:
+
+                            <b>
+                                {{ values.get("Rejected", 0) }}
+                            </b>
+
+                        </p>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <footer class="main-footer">
+
+            <p>
+                © 2026 Loan Prediction Data Analysis System.
+            </p>
+
+            <p>
+                Designed by
+                <strong>Sahu Tech ❤️</strong>
+            </p>
+
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>
