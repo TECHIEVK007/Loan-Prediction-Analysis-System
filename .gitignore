@@ -13,6 +13,8 @@ venv/
 local.properties
 build/
 app/build/
+**/build/
+*.apk
 
 # OS files
 .DS_Store
